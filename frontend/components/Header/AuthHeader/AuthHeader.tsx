@@ -1,10 +1,10 @@
-import React from 'react';
-import Router from 'next/router';
-import { Block } from 'baseui/block';
-import { Button } from 'baseui/button';
-import Logo from '../../UiElements/Logo/Logo';
-import SvgIcon from '../../UiElements/SvgIcon/SvgIcon';
-import Container from '../../UiElements/Container/Container';
+import React from "react";
+import Router from "next/router";
+import { Block } from "baseui/block";
+import { Button } from "baseui/button";
+import Logo from "../../UiElements/Logo/Logo";
+import SvgIcon from "../../UiElements/SvgIcon/SvgIcon";
+import Container from "../../UiElements/Container/Container";
 
 type AuthHeaderType = {
   pathname?: string;
@@ -17,52 +17,52 @@ const AuthHeader = ({ pathname }: AuthHeaderType) => {
         overrides={{
           Block: {
             style: {
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              padding: '23px 0',
-            },
-          },
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "23px 0"
+            }
+          }
         }}
       >
         <Logo
           path={pathname}
           src={
-            <SvgIcon src={require('../../../assets/images/logo.svg?include')} />
+            <SvgIcon src={require("../../../assets/images/logo.svg?include")} />
           }
         />
 
         <Block>
           <Button
             kind="minimal"
-            disabled={pathname === '/login'}
-            onClick={() => Router.push('/login')}
+            disabled={pathname === "/login"}
+            onClick={() => Router.push("/login")}
             overrides={{
               BaseButton: {
                 style: ({ $theme }) => {
                   return {
                     ...$theme.typography.font250,
-                    ':disabled': {
-                      backgroundColor: 'transparent',
-                    },
+                    ":disabled": {
+                      backgroundColor: "transparent"
+                    }
                   };
-                },
-              },
+                }
+              }
             }}
           >
             Login
           </Button>
           <Button
-            disabled={pathname === '/signup'}
-            onClick={() => Router.push('/signup')}
+            disabled={pathname === "/register"}
+            onClick={() => Router.push("/register")}
             overrides={{
               BaseButton: {
                 style: ({ $theme }) => {
                   return {
-                    ...$theme.typography.font250,
+                    ...$theme.typography.font250
                   };
-                },
-              },
+                }
+              }
             }}
           >
             Join Free

@@ -11,23 +11,65 @@ import { Input } from "baseui/input";
 import { Select } from "baseui/select";
 import { useState, useEffect } from "react";
 import { auth } from "../firebase/initialize";
+import { useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
+import { withApollo } from "../apollo/client";
+
+const CREATE_USER = gql`
+  mutation createUser(
+    $uid: String!
+    $email: String!
+    $name: String!
+    $company: String!
+  ) {
+    createUser(
+      data: {
+        uid: $uid
+        name: $name
+        email: $email
+        company: { create: { name: $company } }
+      }
+    ) {
+      id
+      name
+      company {
+        name
+      }
+    }
+  }
+`;
+
 const Login: NextPage<{}> = () => {
   const router = useRouter();
   const { register, handleSubmit, setValue, errors } = useForm();
+  const [createUser] = useMutation(CREATE_USER);
 
-  const onSubmit = data => {
-    auth
-      .createUserWithEmailAndPassword(data.email, data.password)
-      .catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-      })
-      .then(data => {
-        console.log(data);
+  const onSubmit = async data => {
+    try {
+      const firebaseUser = await auth.createUserWithEmailAndPassword(
+        data.email,
+        data.password
+      );
+      const dbUser = await createUser({
+        variables: {
+          uid: firebaseUser.user.uid,
+          name: data.name,
+          company: data.company,
+          email: data.email
+        }
       });
-    // alert(JSON.stringify(data, null, 4));
+      if (
+        dbUser &&
+        dbUser.data &&
+        dbUser.data.createUser &&
+        dbUser.data.createUser.id
+      ) {
+        router.push("/");
+      }
+      console.log(dbUser);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -225,4 +267,4 @@ const Login: NextPage<{}> = () => {
   );
 };
 
-export default Login;
+export default withApollo(Login);
