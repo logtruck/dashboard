@@ -1,0 +1,58 @@
+[
+  {
+    "driver_id": "AG",
+    "name": "Alex",
+    "device_id": "1ECF879B-FEB7-4820-9C29-DD9DD57EB4FF",
+    "token": "abc123",
+    "app_name": "com.hypertrack.logistics.ios.github",
+    "platform": "ios"
+  },
+  {
+    "driver_id": "Amanpreet",
+    "name": "Amanpreet",
+    "device_id": "E5697287-E7D0-3BE2-8D93-B2CD9ED0826C",
+    "token": "abc123",
+    "app_name": "com.hypertrack.logistics.android.github",
+    "platform": "android"
+  },
+  {
+    "driver_id": "Richard",
+    "name": "Richard",
+    "device_id": "B9677CC0-6005-4E89-AC54-9CA9CCD97032",
+    "token": "abc123",
+    "app_name": "com.hypertrack.logistics.ios.github",
+    "platform": "ios"
+  },
+  {
+    "driver_id": "Kashyap",
+    "name": "Kashyap",
+    "device_id": "ABC-123",
+    "token": "abc123",
+    "app_name": "com.hypertrack.logistics.ios.github",
+    "platform": "ios"
+  },
+  {
+    "driver_id": "Denys",
+    "name": "Denys",
+    "device_id": "ABC-123",
+    "token": "abc123",
+    "app_name": "com.hypertrack.logistics.ios.github",
+    "platform": "ios"
+  },
+  {
+    "driver_id": "Eugene",
+    "name": "Eugene",
+    "device_id": "ABC-123",
+    "token": "abc123",
+    "app_name": "com.hypertrack.logistics.ios.github",
+    "platform": "ios"
+  },
+  {
+    "driver_id": "AK",
+    "name": "Alex K.",
+    "device_id": "ABC-123",
+    "token": "abc123",
+    "app_name": "com.hypertrack.logistics.ios.github",
+    "platform": "ios"
+  }
+]
