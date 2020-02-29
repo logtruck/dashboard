@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../assets/css/reset.css";
 import { ProvideAuth } from "../utils/useAuth";
-
+import { withApollo } from "../apollo/client";
 const App: NextPage<{
   Component: any;
   pageProps: any;
@@ -48,4 +48,4 @@ const App: NextPage<{
   );
 };
 
-export default App;
+export default withApollo(App);

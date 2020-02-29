@@ -51,7 +51,7 @@ const Login: NextPage<{}> = () => {
       const firebaseUser = await signup(data.email, data.password);
       const dbUser = await createUser({
         variables: {
-          uid: firebaseUser.user.uid,
+          uid: firebaseUser.uid,
           name: data.name,
           company: data.company,
           email: data.email

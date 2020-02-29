@@ -62,6 +62,7 @@ function generateMockData() {
     initData.User.push({
       name: sampleDrivers[i].name,
       role: "staff",
+      uid: (Math.random() * 100000).toString(),
       company: { where: { name: company } },
       driver: { where: { trackId: sampleDrivers[i].driver_id } }
     });

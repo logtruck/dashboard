@@ -1,35 +1,35 @@
-import { NextPage } from 'next';
-import { IoIosMailUnread, IoMdCart } from 'react-icons/io';
-import { FaMoneyCheckAlt, FaChartLine } from 'react-icons/fa';
-import { Row, Col } from 'react-flexbox-grid';
-import { Block } from 'baseui/block';
-import { Card, StyledBody } from 'baseui/card';
-import Container from '../components/UiElements/Container/Container';
-import ListGridCard from '../components/UiElements/ListGridCard/ListGridCard';
-import LabelGroup from '../components/UiElements/LabelGroup/LabelGroup';
-import WidgetCard from '../components/UiElements/WidgetCard/WidgetCard';
-import ProductViews from '../containers/Widgets/ProductViews';
-import ProductsBar from '../containers/Widgets/ProductsBar';
-import Views from '../containers/Widgets/Views';
-import CashFlow from '../containers/Widgets/CashFlow';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
-import { withApollo } from '../apollo/client';
-import Head from 'next/head';
+import { NextPage } from "next";
+import { IoIosMailUnread, IoMdCart } from "react-icons/io";
+import { FaMoneyCheckAlt, FaChartLine } from "react-icons/fa";
+import { Row, Col } from "react-flexbox-grid";
+import { Block } from "baseui/block";
+import { Card, StyledBody } from "baseui/card";
+import Container from "../components/UiElements/Container/Container";
+import ListGridCard from "../components/UiElements/ListGridCard/ListGridCard";
+import LabelGroup from "../components/UiElements/LabelGroup/LabelGroup";
+import WidgetCard from "../components/UiElements/WidgetCard/WidgetCard";
+import ProductViews from "../containers/Widgets/ProductViews";
+import ProductsBar from "../containers/Widgets/ProductsBar";
+import Views from "../containers/Widgets/Views";
+import CashFlow from "../containers/Widgets/CashFlow";
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
+import { withApollo } from "../apollo/client";
+import Head from "next/head";
 
 const productsBarOptions = [
   {
-    color: '#FF0080',
-    label: 'Banana',
+    color: "#FF0080",
+    label: "Banana"
   },
   {
-    color: '#7928CA',
-    label: 'Orange',
+    color: "#7928CA",
+    label: "Orange"
   },
   {
-    color: '#0070F3',
-    label: 'Blueberry',
-  },
+    color: "#0070F3",
+    label: "Blueberry"
+  }
 ];
 const GET_DASHBOARD = gql`
   query {
@@ -58,7 +58,7 @@ const GET_DASHBOARD = gql`
 `;
 const Home: NextPage<{}> = () => {
   const { data, loading, error, fetchMore } = useQuery(GET_DASHBOARD, {
-    notifyOnNetworkStatusChange: true,
+    notifyOnNetworkStatusChange: true
   });
   if (!data) return null;
   const { productViews, recentApps, productsBar, cashFlow } = data.dashboard;
@@ -67,55 +67,55 @@ const Home: NextPage<{}> = () => {
       <Head>
         <title> INST.</title>
       </Head>
-      <Block paddingTop={['15px', '20px', '30px', '40px']}>
+      <Block paddingTop={["15px", "20px", "30px", "40px"]}>
         <Row>
           <Col xs={12} lg={6}>
             <Row>
               <Col sm={6}>
                 <WidgetCard
-                  style={{ marginBottom: '20px' }}
+                  style={{ marginBottom: "20px" }}
                   title="210"
                   icon={<IoIosMailUnread color="#ffffff" size="1.7em" />}
                   description="Unread Order Email"
                   btntext="View report"
                   label="Total mail"
-                  onClick={() => console.log('View report of unread email.')}
+                  onClick={() => console.log("View report of unread email.")}
                 />
               </Col>
               <Col sm={6}>
                 <WidgetCard
-                  style={{ marginBottom: '20px' }}
+                  style={{ marginBottom: "20px" }}
                   color="#0070F3"
                   title="198"
                   icon={<IoMdCart color="#ffffff" size="1.7em" />}
                   description="Pending Orders"
                   btntext="View report"
                   label="Total orders"
-                  onClick={() => console.log('View report of pending orders.')}
+                  onClick={() => console.log("View report of pending orders.")}
                 />
               </Col>
               <Col sm={6}>
                 <WidgetCard
-                  style={{ marginBottom: '20px' }}
+                  style={{ marginBottom: "20px" }}
                   color="#3AA76D"
                   title="$210M"
                   icon={<FaChartLine color="#ffffff" size="1.6em" />}
                   description="Yearly Income"
                   btntext="View report"
                   label="Yearly income"
-                  onClick={() => console.log('View report of yearly income.')}
+                  onClick={() => console.log("View report of yearly income.")}
                 />
               </Col>
               <Col sm={6}>
                 <WidgetCard
-                  style={{ marginBottom: '20px' }}
+                  style={{ marginBottom: "20px" }}
                   color="#7928CA"
                   title="$210M"
                   icon={<FaMoneyCheckAlt color="#ffffff" size="1.6em" />}
                   description="Total Spent"
                   btntext="View report"
                   label="Previous month"
-                  onClick={() => console.log('View report of previous month.')}
+                  onClick={() => console.log("View report of previous month.")}
                 />
               </Col>
             </Row>
@@ -127,28 +127,28 @@ const Home: NextPage<{}> = () => {
                 Root: {
                   style: ({ $theme }) => {
                     return {
-                      borderColor: 'transparent',
+                      borderColor: "transparent",
                       boxShadow: $theme.lighting.shadow400,
-                      minHeight: '312px',
-                      marginBottom: '20px',
+                      minHeight: "312px",
+                      marginBottom: "20px"
                     };
-                  },
+                  }
                 },
                 Title: {
                   style: ({ $theme }) => {
                     return {
                       ...$theme.typography.font250,
-                      position: 'absolute',
+                      position: "absolute"
                     };
-                  },
+                  }
                 },
                 Body: {
                   style: () => {
                     return {
-                      minHeight: '260px',
+                      minHeight: "260px"
                     };
-                  },
-                },
+                  }
+                }
               }}
             >
               <StyledBody>
@@ -170,28 +170,28 @@ const Home: NextPage<{}> = () => {
                 Root: {
                   style: ({ $theme }) => {
                     return {
-                      borderColor: 'transparent',
+                      borderColor: "transparent",
                       boxShadow: $theme.lighting.shadow400,
-                      marginBottom: $theme.sizing.scale700,
+                      marginBottom: $theme.sizing.scale700
                     };
-                  },
+                  }
                 },
                 Title: {
                   style: ({ $theme }) => {
                     return {
                       ...$theme.typography.font250,
-                      position: 'absolute',
+                      position: "absolute"
                     };
-                  },
+                  }
                 },
                 Body: {
                   style: () => {
                     return {
-                      minHeight: '372px',
-                      position: 'relative',
+                      minHeight: "372px",
+                      position: "relative"
                     };
-                  },
-                },
+                  }
+                }
               }}
             >
               <StyledBody>
@@ -203,9 +203,9 @@ const Home: NextPage<{}> = () => {
 
                 <LabelGroup
                   style={{
-                    position: 'absolute',
-                    width: '100%',
-                    bottom: '-71px',
+                    position: "absolute",
+                    width: "100%",
+                    bottom: "-71px"
                   }}
                   items={productsBarOptions}
                 />
@@ -219,20 +219,20 @@ const Home: NextPage<{}> = () => {
                 Root: {
                   style: ({ $theme }) => {
                     return {
-                      borderColor: 'transparent',
+                      borderColor: "transparent",
                       boxShadow: $theme.lighting.shadow400,
-                      marginBottom: '10px',
-                      minHeight: '408px',
+                      marginBottom: "10px",
+                      minHeight: "408px"
                     };
-                  },
+                  }
                 },
                 Title: {
                   style: ({ $theme }) => {
                     return {
-                      ...$theme.typography.font250,
+                      ...$theme.typography.font250
                     };
-                  },
-                },
+                  }
+                }
               }}
             >
               <StyledBody>
@@ -244,8 +244,8 @@ const Home: NextPage<{}> = () => {
                     title={item.name}
                     description={item.description}
                     style={{
-                      alignItems: 'flex-start',
-                      marginTop: '20px',
+                      alignItems: "flex-start",
+                      marginTop: "20px"
                     }}
                   />
                 ))}
@@ -259,27 +259,27 @@ const Home: NextPage<{}> = () => {
                 Root: {
                   style: ({ $theme }) => {
                     return {
-                      borderColor: 'transparent',
+                      borderColor: "transparent",
                       boxShadow: $theme.lighting.shadow400,
-                      marginBottom: $theme.sizing.scale700,
+                      marginBottom: $theme.sizing.scale700
                     };
-                  },
+                  }
                 },
                 Title: {
                   style: ({ $theme }) => {
                     return {
                       ...$theme.typography.font250,
-                      position: 'absolute',
+                      position: "absolute"
                     };
-                  },
+                  }
                 },
                 Contents: {
                   style: () => {
                     return {
-                      minHeight: '372px',
+                      minHeight: "372px"
                     };
-                  },
-                },
+                  }
+                }
               }}
             >
               <StyledBody>
@@ -297,26 +297,26 @@ const Home: NextPage<{}> = () => {
                 Root: {
                   style: ({ $theme }) => {
                     return {
-                      borderColor: 'transparent',
-                      boxShadow: $theme.lighting.shadow400,
+                      borderColor: "transparent",
+                      boxShadow: $theme.lighting.shadow400
                     };
-                  },
+                  }
                 },
                 Title: {
                   style: ({ $theme }) => {
                     return {
                       ...$theme.typography.font250,
-                      position: 'absolute',
+                      position: "absolute"
                     };
-                  },
+                  }
                 },
                 Body: {
                   style: () => {
                     return {
-                      minHeight: '200px',
+                      minHeight: "200px"
                     };
-                  },
-                },
+                  }
+                }
               }}
             >
               <StyledBody>
@@ -333,4 +333,4 @@ const Home: NextPage<{}> = () => {
   );
 };
 
-export default withApollo(Home);
+export default Home;

@@ -31,7 +31,7 @@ exports.Company = {
 exports.User = {
   fields: {
     email: { type: Text },
-    uid: { type: Text },
+    uid: { type: Text, isUnique: true },
     name: { type: Text },
     role: { type: Select, options: "superadmin, admin, staff" },
     company: { type: Relationship, ref: "Company.users" },
