@@ -4,7 +4,9 @@ import "firebase/auth";
 import config from "../firebase/config";
 
 // Add your Firebase credentials
-firebase.initializeApp(config);
+if (!firebase.apps.length) {
+  firebase.initializeApp(config);
+}
 
 const authContext = createContext();
 
@@ -24,7 +26,7 @@ export const useAuth = () => {
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
   const [user, setUser] = useState(null);
-
+  const [idToken, setIdToken] = useState("");
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
   const signin = (email, password) => {
@@ -79,8 +81,10 @@ function useProvideAuth() {
   // ... component that utilizes this hook to re-render with the ...
   // ... latest auth object.
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(async user => {
       if (user) {
+        const token = await user.getIdToken();
+        setIdToken(token);
         setUser(user);
       } else {
         setUser(false);
@@ -94,6 +98,7 @@ function useProvideAuth() {
   // Return the user object and auth methods
   return {
     user,
+    idToken,
     signin,
     signup,
     signout,

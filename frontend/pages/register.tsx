@@ -10,7 +10,8 @@ import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import { Select } from "baseui/select";
 import { useState, useEffect } from "react";
-import { auth } from "../firebase/initialize";
+// import { auth } from "../firebase/initialize";
+import { useAuth } from "../utils/useAuth";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { withApollo } from "../apollo/client";
@@ -40,16 +41,14 @@ const CREATE_USER = gql`
 `;
 
 const Login: NextPage<{}> = () => {
+  const { signup } = useAuth();
   const router = useRouter();
   const { register, handleSubmit, setValue, errors } = useForm();
   const [createUser] = useMutation(CREATE_USER);
 
   const onSubmit = async data => {
     try {
-      const firebaseUser = await auth.createUserWithEmailAndPassword(
-        data.email,
-        data.password
-      );
+      const firebaseUser = await signup(data.email, data.password);
       const dbUser = await createUser({
         variables: {
           uid: firebaseUser.user.uid,

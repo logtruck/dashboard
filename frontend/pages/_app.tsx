@@ -11,6 +11,7 @@ import "@glidejs/glide/dist/css/glide.core.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../assets/css/reset.css";
+import { ProvideAuth } from "../utils/useAuth";
 
 const App: NextPage<{
   Component: any;
@@ -25,23 +26,25 @@ const App: NextPage<{
     setTheme(SAVED_THEME);
   }, []);
   return (
-    <ThemeSwitcherProvider value={{ theme, setTheme }}>
-      <StyletronProvider value={styletron} debug={debug} debugAfterHydration>
-        <BaseProvider
-          theme={
-            theme === THEME.light
-              ? { ...LightTheme, direction: "ltr" }
-              : { ...DarkTheme, direction: "ltr" }
-          }
-        >
-          <CartProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </CartProvider>
-        </BaseProvider>
-      </StyletronProvider>
-    </ThemeSwitcherProvider>
+    <ProvideAuth>
+      <ThemeSwitcherProvider value={{ theme, setTheme }}>
+        <StyletronProvider value={styletron} debug={debug} debugAfterHydration>
+          <BaseProvider
+            theme={
+              theme === THEME.light
+                ? { ...LightTheme, direction: "ltr" }
+                : { ...DarkTheme, direction: "ltr" }
+            }
+          >
+            <CartProvider>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </CartProvider>
+          </BaseProvider>
+        </StyletronProvider>
+      </ThemeSwitcherProvider>
+    </ProvideAuth>
   );
 };
 
