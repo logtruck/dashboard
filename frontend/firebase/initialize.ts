@@ -1,6 +1,7 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import config from './config';
+import firebase from "firebase/app";
+import "firebase/firestore";
+import "firebase/auth";
+import config from "./config";
 
 /**
  * For SSR initialization needed with this check
@@ -21,4 +22,5 @@ export const getTimeStamp = () => {
 };
 
 export const db = firebase.firestore();
+export const auth = firebase.auth();
 export default firebase;

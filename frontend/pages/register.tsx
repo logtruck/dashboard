@@ -10,14 +10,24 @@ import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import { Select } from "baseui/select";
 import { useState, useEffect } from "react";
-
+import { auth } from "../firebase/initialize";
 const Login: NextPage<{}> = () => {
   const router = useRouter();
   const { register, handleSubmit, setValue, errors } = useForm();
 
   const onSubmit = data => {
-    console.log(data);
-    alert(JSON.stringify(data, null, 4));
+    auth
+      .createUserWithEmailAndPassword(data.email, data.password)
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+      })
+      .then(data => {
+        console.log(data);
+      });
+    // alert(JSON.stringify(data, null, 4));
   };
 
   return (
@@ -55,11 +65,11 @@ const Login: NextPage<{}> = () => {
               }
             }}
           >
-            Login
+            Register
           </Block>
           <Block width={["80%", "80%", "50%"]}>
             <form onSubmit={handleSubmit(onSubmit)} style={{ width: "100%" }}>
-              {/*<Block marginBottom="30px">
+              <Block marginBottom="30px">
                 <FormControl
                   label="Your Name"
                   caption="Please use 32 characters at maximum"
@@ -77,7 +87,26 @@ const Login: NextPage<{}> = () => {
                     }}
                   />
                 </FormControl>
-                  </Block>*/}
+              </Block>
+              <Block marginBottom="30px">
+                <FormControl
+                  label="Company Name"
+                  caption="Please use 32 characters at maximum"
+                  error={errors.company && "This field is required"}
+                >
+                  <Input
+                    name="company"
+                    inputRef={register({ required: true, maxLength: 32 })}
+                    overrides={{
+                      InputContainer: {
+                        style: () => {
+                          return { backgroundColor: "transparent" };
+                        }
+                      }
+                    }}
+                  />
+                </FormControl>
+              </Block>
 
               <Block marginBottom="30px">
                 <FormControl
@@ -108,6 +137,7 @@ const Login: NextPage<{}> = () => {
                   error={errors.password && "Please enter a valid password"}
                 >
                   <Input
+                    type="password"
                     name="password"
                     inputRef={register({
                       required: true
